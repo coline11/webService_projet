@@ -9,6 +9,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Link;
@@ -33,11 +34,30 @@ public class MusicResource {
 	@Context
 	UriInfo uriInfo;
 
+	/*
+	@POST
+	@Path("/{aid}")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_XML)
+	public Response addUpcomingEvent(@PathParam("aid") int artistId, MusicEvent event) {
+		service.addUpcomingEvent(artist, event);
+		URI uri = uriInfo.getRequestUri();
+
+		String newUri = uri.getPath() + "/" + artist.getAlias() + "/" + event.getEventId();
+		if (!artist.getDisamiguation().isEmpty()) {
+			newUri += "_" + artist.getDisamiguation();
+		}
+		return Response.status(Response.Status.CREATED)
+					   .entity(artist)
+					   .contentLocation(uri.resolve(newUri))
+					   .build();
+	}*/
+
 	@POST
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.APPLICATION_XML)
-	public Response addUpcomingEvent(Artist artist, MusicEvent event) {
-		service.addUpcomingEvent(artist, event);
+	public Response addArtist(Artist artist) {
+		service.addArtist(artist);
 		URI uri = uriInfo.getRequestUri();
 
 		String newUri = uri.getPath() + "/" + artist.getAlias();
@@ -51,19 +71,20 @@ public class MusicResource {
 	}
 
 	@DELETE
-	//@Path(/*What do I put here*/)
+	@Path("/{aid}")
 	@Produces(MediaType.APPLICATION_XML)
-	public Response deleteArtist(Artist artist) {
-		if(service.deleteArtist(artist)) {
+	public Response deleteArtist(@PathParam("aid") int artistId) {
+		if(service.deleteArtist(artistId)) {
 			return Response.status(Response.Status.OK).build();
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 
 	@DELETE
+	@Path("/{aid}/{eid}")
 	@Produces(MediaType.APPLICATION_XML)
-	public Response deleteEvent(Artist artist, MusicEvent me) {
-		if (service.deleteEvent(artist, me)) {
+	public Response deleteEvent(@PathParam("aid") int artistId, @PathParam("eid") int musicId) {
+		if (service.deleteEvent(artistId, musicId)) {
 			return Response.status(Response.Status.OK).build();
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();

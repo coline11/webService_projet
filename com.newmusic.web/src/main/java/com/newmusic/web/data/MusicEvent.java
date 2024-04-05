@@ -14,6 +14,8 @@ public class MusicEvent {
 	private String location = "";
 	private int score = 999;
 	
+	public MusicEvent() {}
+	
 	public MusicEvent(String name, Artist byWho) {
 		eventName = name;
 		performer = byWho;

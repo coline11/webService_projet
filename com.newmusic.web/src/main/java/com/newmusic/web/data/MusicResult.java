@@ -7,6 +7,8 @@ public class MusicResult {
 	
 	private String query;
 	
+	public MusicResult() {}
+	
 	public MusicResult(String q) {
 		query = q;
 	}

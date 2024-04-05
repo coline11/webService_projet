@@ -1,5 +1,7 @@
 package com.newmusic.client;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -13,7 +15,30 @@ public class MusicRequestClient {
 
 	public static void main(String[] args) {
 		Artist billie = new Artist("Billie", "Eilish");
-		addUpcomingEvent(billie, "WHERE DO WE GO? WORLD TOUR: PHILADELPHIA");
+		addArtist(billie);
+		
+		//addUpcomingEvent(billie, "WHERE DO WE GO? WORLD TOUR: PHILADELPHIA");
+	}
+
+	/**
+	 * Adds an artist which does not exist yet.
+	 * 
+	 * @param artist The artist to add
+	 */
+	private static Integer addArtist(Artist artist) {
+		System.out.println("Adding " + artist.getFirstName() + " " + artist.getLastName() + "...");
+		WebClient c = WebClient.create(webServiceUrl);
+		Response r = c.type(MediaType.APPLICATION_XML).post(artist);
+		if(r.getStatus() == 400) {
+			System.out.println("Oops!");
+			return null;
+		}
+		String uri = r.getHeaderString("Content-Location");
+		System.out.println("Ok.");
+		
+		c.close();
+
+		return Integer.parseInt(uri.substring(uri.lastIndexOf('/') + 1));
 	}
 	
 	/**

@@ -25,6 +25,7 @@ public class MusicService {
 
 	private static HashMap<Artist, ArrayList<Integer>> eventIdsByArtist = new HashMap<Artist, ArrayList<Integer>>();
 	private static HashMap<Integer, Artist> artistById = new HashMap<Integer, Artist>();
+	private static HashMap<Integer, HashMap<Integer, MusicEvent>> eventByIdByArtistId = new HashMap<Integer, HashMap<Integer, MusicEvent>>();
 
 	/**
 	 * Generates a new event id that has not already been used yet
@@ -64,7 +65,7 @@ public class MusicService {
 	 * @param artist The artist headlining the event
 	 * @param event  The event to be added
 	 */
-	public void addUpcomingEvent(Artist artist, MusicEvent event) {
+	/*public void addUpcomingEvent(Artist artist, MusicEvent event) {
 		int id = getNewEventId(artist);
 		event.setEventId(id);
 
@@ -77,44 +78,53 @@ public class MusicService {
 
 		ArrayList<Integer> ali = eventIdsByArtist.get(artist);
 		ali.add(event.getEventId());
+		
+		HashMap<Integer, MusicEvent> hmime = eventByIdByArtistId.get(artist.getArtistsId());
+		hmime.put(id, event);
 		// alme.sort(new SortByDate());
-	}
+	}*/
 
 	/**
 	 * Adds an artist which does not exist yet.
 	 * 
 	 * @param artist The artist to add
 	 */
-	private void addArtist(Artist artist) {
+	public Artist addArtist(Artist artist) {
 		int id = getNewArtistId();
+		artist.setArtistId(id);
 
 		upcomingEventsArtist.put(artist, new ArrayList<MusicEvent>());
 		eventIdsByArtist.put(artist, new ArrayList<Integer>());
+		eventByIdByArtistId.put(id, new HashMap<Integer, MusicEvent>());
+		
+		return artist;
 	}
 
 	/**
 	 * Deletes the artist from the list of upcoming events
 	 * 
-	 * @param artist The artist to delete
+	 * @param artistId The id of the artist to delete
 	 * @return Whether or not the artist was successfully deleted
 	 */
-	public boolean deleteArtist(Artist artist) {
+	public boolean deleteArtist(int artistId) {
+		Artist artist = artistById.remove(artistId);
+		eventByIdByArtistId.remove(artistId);
 		boolean wasRemoved = upcomingEventsArtist.remove(artist) != null;
-		if(wasRemoved) {
-			
-		}
-		
 		return wasRemoved;
 	}
 
 	/**
 	 * Deletes a specific event from an artist's upcoming event list
 	 * 
-	 * @param artist The artist headlining the event
-	 * @param me     The event to delete
+	 * @param artist The id of the artist headlining the event
+	 * @param me     The id of the event to delete
 	 * @return Whether or not the event was sucessfully deleted
 	 */
-	public boolean deleteEvent(Artist artist, MusicEvent me) {
+	public boolean deleteEvent(int artistId, int musicId) {
+		Artist artist = artistById.get(artistId);
+		if(artist == null) return false;
+		
+		MusicEvent me = eventByIdByArtistId.get(artistId).get(musicId);
 		return upcomingEventsArtist.remove(artist, me);
 	}
 
@@ -130,16 +140,10 @@ public class MusicService {
 	 * @param id The music event's identifier
 	 * @return The MusicEvent, if it exists, otherwise, null
 	 */
-	public MusicEvent getEventByArtistAndId(Artist a, Integer id) {
-		ArrayList<MusicEvent> artistMusicEvents = upcomingEventsArtist.get(a);
-		if (artistMusicEvents == null)
-			return null;
-		for (MusicEvent me : artistMusicEvents) {
-			if (me.getEventId() == id) {
-				return me;
-			}
-		}
-		return null;
+	public MusicEvent getEventByArtistAndId(Integer artistId, Integer eventId) {
+		HashMap<Integer, MusicEvent> musicEvents = eventByIdByArtistId.get(artistId);
+		if(musicEvents == null) return null;
+		return musicEvents.get(eventId);
 	}
 
 	/**

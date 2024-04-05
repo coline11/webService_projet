@@ -13,6 +13,8 @@ public class Artist {
 	private String disamiguation = "";
 	private boolean isDead = false;
 	
+	public Artist() {}
+	
 	public Artist(String fName, String lName) {
 		firstName = fName;
 		lastName = lName;
