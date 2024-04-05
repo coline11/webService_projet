@@ -12,7 +12,7 @@ import find.newmusic.com.data.Artist;
 import find.newmusic.com.data.MusicEvent;
 
 public class MusicRequestClient {
-	private static final String webServiceUrl = "http://localhost:8080/find.newmusic.com/api/music";
+	private static final String webServiceUrl = "http://localhost:8080/com.newmusic.web/api/music";
 
 	public static void main(String[] args) {
 		Artist billie = new Artist("Billie", "Eilish");
