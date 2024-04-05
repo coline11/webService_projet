@@ -1,4 +1,4 @@
-package com.newmusic.web.data;
+package find.newmusic.com.data;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

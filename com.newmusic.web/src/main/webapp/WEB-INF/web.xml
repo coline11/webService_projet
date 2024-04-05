@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <servlet>
-    <display-name>com.newmusic.web</display-name>
-    <servlet-name>com.newmusic.web</servlet-name>
+    <display-name>find.newmusic.com</display-name>
+    <servlet-name>find.newmusic.com</servlet-name>
     <servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
 <init-param>
 <param-name>jaxrs.classes</param-name>
 <param-value>
-com.newmusic.web.resources.MusicResource</param-value>
+find.newmusic.com.resources.MusicResource</param-value>
 </init-param>
     <init-param>
       <param-name>jaxrs.serviceClasses</param-name>
-      <param-value>com.newmusic.web.resource.MusicResource</param-value>
+      <param-value>find.newmusic.com.resource.MusicResource</param-value>
     </init-param>
     <init-param>
       <param-name>jaxrs.address</param-name>
@@ -19,7 +19,7 @@ com.newmusic.web.resources.MusicResource</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>com.newmusic.web</servlet-name>
+    <servlet-name>find.newmusic.com</servlet-name>
     <url-pattern>/*</url-pattern>
   </servlet-mapping>
 </web-app>

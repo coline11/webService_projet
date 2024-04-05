@@ -1,4 +1,4 @@
-package com.newmusic.web.resource;
+package find.newmusic.com.resource;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -16,7 +16,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
-import com.newmusic.web.data.Artist;
+import find.newmusic.com.data.Artist;
 
 public class DistantWSAccess {
 	

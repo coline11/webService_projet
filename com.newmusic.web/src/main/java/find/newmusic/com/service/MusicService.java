@@ -1,4 +1,4 @@
-package com.newmusic.web.service;
+package find.newmusic.com.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 
-import com.newmusic.web.data.Artist;
-import com.newmusic.web.data.MusicEvent;
+import find.newmusic.com.data.Artist;
+import find.newmusic.com.data.MusicEvent;
 
 /**
  * Music service that implements the different request methods
@@ -120,13 +120,13 @@ public class MusicService {
 	 * @param me     The id of the event to delete
 	 * @return Whether or not the event was sucessfully deleted
 	 */
-	public boolean deleteEvent(int artistId, int musicId) {
+	/*public boolean deleteEvent(int artistId, int musicId) {
 		Artist artist = artistById.get(artistId);
 		if(artist == null) return false;
 		
 		MusicEvent me = eventByIdByArtistId.get(artistId).get(musicId);
 		return upcomingEventsArtist.remove(artist, me);
-	}
+	}*/
 
 	public HashMap<Artist, ArrayList<MusicEvent>> getUpcomingEventsArtist() {
 		return upcomingEventsArtist;
@@ -140,21 +140,13 @@ public class MusicService {
 	 * @param id The music event's identifier
 	 * @return The MusicEvent, if it exists, otherwise, null
 	 */
-	public MusicEvent getEventByArtistAndId(Integer artistId, Integer eventId) {
+	/*public MusicEvent getEventByArtistAndId(Integer artistId, Integer eventId) {
 		HashMap<Integer, MusicEvent> musicEvents = eventByIdByArtistId.get(artistId);
 		if(musicEvents == null) return null;
 		return musicEvents.get(eventId);
-	}
-
-	/**
-	 * A private class to help sort {@link MusicEvent}s by date
-	 * 
-	 * @author mattewyang1325@gmail.com
-	 *
-	 */
-	private class SortByDate implements Comparator<MusicEvent> {
-		public int compare(MusicEvent me1, MusicEvent me2) {
-			return me1.getStartDate().compareTo(me2.getStartDate());
-		}
+	}*/
+	
+	public Artist getArtist(int id) {
+		return artistById.get(id);
 	}
 }
