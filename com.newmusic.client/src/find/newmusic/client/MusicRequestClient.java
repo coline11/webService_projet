@@ -8,8 +8,8 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
 
-import find.newmusic.com.data.Artist;
-import find.newmusic.com.data.MusicEvent;
+import com.newmusic.web.data.Artist;
+import com.newmusic.web.data.MusicEvent;
 
 public class MusicRequestClient {
 	private static final String webServiceUrl = "http://localhost:8080/com.newmusic.web/api/music";

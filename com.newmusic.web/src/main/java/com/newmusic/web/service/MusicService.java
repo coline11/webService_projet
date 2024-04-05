@@ -1,4 +1,4 @@
-package find.newmusic.com.service;
+package com.newmusic.web.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 
-import find.newmusic.com.data.Artist;
-import find.newmusic.com.data.MusicEvent;
+import com.newmusic.web.data.Artist;
+import com.newmusic.web.data.MusicEvent;
 
 /**
  * Music service that implements the different request methods

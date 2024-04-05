@@ -1,4 +1,4 @@
-package find.newmusic.com.resource;
+package com.newmusic.web.resource;
 
 import java.net.URI;
 import javax.ws.rs.Consumes;
@@ -14,8 +14,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import find.newmusic.com.data.Artist;
-import find.newmusic.com.service.MusicService;
+import com.newmusic.web.data.Artist;
+import com.newmusic.web.service.MusicService;
 
 @Path("/music")
 public class MusicResource {

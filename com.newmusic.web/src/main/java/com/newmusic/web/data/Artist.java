@@ -1,4 +1,4 @@
-package find.newmusic.com.data;
+package com.newmusic.web.data;
 
 import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlRootElement;
