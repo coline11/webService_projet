@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Artist {
 	private int artistId;
 	private String firstName = "", lastName = "", alias = "";
-	private LocalDate birthdate = Constants.NULL_DATE;
+	//private LocalDate birthdate = Constants.NULL_DATE;
 	private String country = "";
 	private String gender = "";
 	private String disamiguation = "";
@@ -43,10 +43,6 @@ public class Artist {
 
 	public String getAlias() {
 		return alias;
-	}
-
-	public LocalDate getBirthdate() {
-		return birthdate;
 	}
 
 	public String getCountry() {
@@ -86,10 +82,6 @@ public class Artist {
 		this.alias = alias;
 	}
 
-	public void setBirthdate(LocalDate birthdate) {
-		this.birthdate = birthdate;
-	}
-
 	public void setCountry(String country) {
 		this.country = country;
 	}
@@ -109,10 +101,9 @@ public class Artist {
 	public String toString() {
 		String name = firstName + " " + lastName;
 		if(!alias.isEmpty()) name += " (AKA " + alias + ")";
-		if(birthdate != null) name += "\nBorn on: " + birthdate;
 		if(!country.isEmpty()) name += "\nBorn in: " + country;
 		if(!gender.isEmpty()) name += "\nGender: " + gender;
-		if(!disamiguation.isEmpty()) name += "\nDisambig: " + birthdate;
+		if(!disamiguation.isEmpty()) name += "\nDisambig: " + disamiguation;
 		name += "\nIs dead: " + isDead;
 		return name;
 	}
