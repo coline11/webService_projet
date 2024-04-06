@@ -2,9 +2,11 @@ package com.newmusic.web.resource;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -37,9 +39,16 @@ public class DistantWSAccess {
 		return search("artist:%22" + artistInfo + "%22");
 	}
 	
-	public static String searchEvent(String eventName) {	
-		return search("event:%22" + eventName + "%22"); // test
+	public static String searchEvent(String eventName) {
+		String searchTerm = "";
+		try {
+			searchTerm = URLEncoder.encode(eventName, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return search("event:%22" + searchTerm + "%22"); // test
 	}
+	
 	
 	public static String search(String query) {
 		String webServiceResponse = "";
