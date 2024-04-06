@@ -49,6 +49,15 @@ public class DistantWSAccess {
 		return search("event:%22" + searchTerm + "%22"); // test
 	}
 	
+	public static String searchPlace(String placeName) {
+		String searchTerm = "";
+		try {
+			searchTerm = URLEncoder.encode(placeName, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return search("place:%22" + searchTerm + "%22"); // test
+	}
 	
 	public static String search(String query) {
 		String webServiceResponse = "";
