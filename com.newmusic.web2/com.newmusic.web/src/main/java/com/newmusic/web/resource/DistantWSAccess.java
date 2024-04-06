@@ -19,6 +19,7 @@ import org.xml.sax.InputSource;
 import com.newmusic.web.data.Artist;
 
 public class DistantWSAccess {
+	//test
 	
 	public static String searchByArtistAlias(Artist a) {
 		return searchByArtist(a.getAlias());
