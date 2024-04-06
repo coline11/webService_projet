@@ -18,6 +18,8 @@ public class MusicRequestClient {
 		Artist billie = new Artist("Billie", "Eilish");
 		int idArtist = addArtist(billie);
 		System.out.println("Added artist at: " + idArtist);
+		
+		get(idArtist);
 
 		// addUpcomingEvent(billie, "WHERE DO WE GO? WORLD TOUR: PHILADELPHIA");
 	}
@@ -39,8 +41,6 @@ public class MusicRequestClient {
 			System.out.println("Url not found!");
 			return -1;
 		}
-		
-		System.out.println(r.getStatus());
 		
 		String uri = r.getHeaderString("Content-Location");
 		System.out.println("Ok.");

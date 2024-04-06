@@ -96,7 +96,7 @@ public class MusicService {
 		upcomingEventsArtist.put(artist, new ArrayList<MusicEvent>());
 		eventIdsByArtist.put(artist, new ArrayList<Integer>());
 		eventByIdByArtistId.put(id, new HashMap<Integer, MusicEvent>());
-		
+		artistById.put(id, artist);
 		return artist;
 	}
 
