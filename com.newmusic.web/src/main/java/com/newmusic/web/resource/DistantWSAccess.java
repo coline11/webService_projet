@@ -37,6 +37,10 @@ public class DistantWSAccess {
 		return search("artist:%22" + artistInfo + "%22");
 	}
 	
+	public static String searchEvent(String eventName) {	
+		return search("event:%22" + eventName + "%22"); // test
+	}
+	
 	public static String search(String query) {
 		String webServiceResponse = "";
 		try {
