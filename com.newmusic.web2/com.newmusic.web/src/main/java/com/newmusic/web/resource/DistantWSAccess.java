@@ -39,7 +39,7 @@ public class DistantWSAccess {
 	
 	public static String searchEvent(String eventName) {
 		
-		return search("event:%22" + eventName + "%22");
+		return search("event:%22" + eventName + "%22"); // test
 	}
 	
 	public static String search(String query) {
