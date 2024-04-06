@@ -104,4 +104,10 @@ public class DistantWSAccess {
 	        e.printStackTrace();
 	    }
 	}
+	
+	public static void main(String args[]) {
+		Artist a = new Artist("Billie", "Eilish");
+		String s = searchByArtistName(a);
+		System.out.println(s);
+	}
 }
