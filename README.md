@@ -17,7 +17,7 @@ La partie service web est développée à l'aide des frameworks JAX-WS et JAX-RS
 ### Clients’ description
 Le client est une application Java capable d'appeler toutes les opérations du service web. Il peut créer de nouveaux événements musicaux et artistes, et afficher les informations sur les événements regroupés par artiste. De plus, le client appelle également un service web musical externe, tel que l'API MusicBrainz ou l'API Web Spotify, pour obtenir des informations sur la nationalité des artistes et enrichir l'affichage des informations sur les événements.
 
-### use case demonstrating
+### cas d'utilisation démontrant
 L'objectif de ce projet est de créer un système de gestion des événements musicaux simple et convivial, permettant aux utilisateurs de rechercher et de découvrir facilement les événements musicaux à venir, tout en affichant des informations pertinentes sur les artistes, offrant ainsi une expérience musicale plus enrichissante.
 
 #### Features
@@ -27,7 +27,7 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
 - Use the `searchEvent(eventName)` method to search for music events with a specific name.
 ...
 
-#### How to Use
+#### Comment utiliser
 
 1. **Search for Music Events Related to an Artist for example "Billie Eilish"**
 
