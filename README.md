@@ -41,4 +41,25 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
    String placeName = "Place";
     String result = DistantWSAccess.searchPlace(placeName);
    // Process or display the result
+   
+3. **Search the Artists**
+
+   ```java
+   // Search for information about the artist
+	    String artistInfo = "Billie Eilish";
+	    String s = searchByArtist(artistInfo);
+
+	    // Create an Artist instance
+	    Artist artist = new Artist();
+
+	    // Use the setFromXML method to set the attributes of the Artist instance
+	    artist.setFromXML(s);
+
+	    // Print the attributes of the Artist instance to verify correctness
+	    System.out.println("First Name: " + artist.getFirstName());
+	    System.out.println("Last Name: " + artist.getLastName());
+	    System.out.println("Alias: " + artist.getAlias());
+	    System.out.println("Country: " + artist.getCountry());
+	    System.out.println("Gender: " + artist.getGender());
+	    System.out.println("Is Dead: " + artist.isDead());
 
