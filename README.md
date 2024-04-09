@@ -20,4 +20,25 @@ Le client est une application Java capable d'appeler toutes les opérations du s
 ### use case demonstrating
 L'objectif de ce projet est de créer un système de gestion des événements musicaux simple et convivial, permettant aux utilisateurs de rechercher et de découvrir facilement les événements musicaux à venir, tout en affichant des informations pertinentes sur les artistes, offrant ainsi une expérience musicale plus enrichissante.
 
+#### Features
+
+- Utilize the `searchByArtist(artistInfo)` method to search for music events related to an artist.
+- Use the `searchPlace(placeName)` method to search for music events at a specific address.
+- Use the `searchEvent(eventName)` method to search for music events with a specific name.
+
+#### How to Use
+
+1. **Search for Music Events Related to an Artist**
+
+   ```java
+   String artistInfo = "Artist Name";
+   String result = DistantWSAccess.searchByArtist(artistInfo);
+   // Process or display the result
+
+2. **Search for Music Events Related to a Place**
+
+   ```java
+   String placeName = "Place";
+    String result = DistantWSAccess.searchPlace(placeName);
+   // Process or display the result
 
