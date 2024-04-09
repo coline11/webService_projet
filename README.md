@@ -25,22 +25,22 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
 - Utilize the `searchByArtist(artistInfo)` method to search for music events related to an artist.
 - Use the `searchPlace(placeName)` method to search for music events at a specific address.
 - Use the `searchEvent(eventName)` method to search for music events with a specific name.
+...
 
 #### How to Use
 
-1. **Search for Music Events Related to an Artist**
+1. **Search for Music Events Related to an Artist for example "Billie Eilish"**
 
    ```java
-   String artistInfo = "Artist Name";
-   String result = DistantWSAccess.searchByArtist(artistInfo);
-   // Process or display the result
+   String artistInfo = "Billie Eilish";
+   String s = searchByArtist(artistInfo);
+   System.out.println(s);
 
-2. **Search for Music Events Related to a Place**
+2. **Search for Music Events Related to a Place for example "Studio 104, Radio France"**
 
    ```java
-   String placeName = "Place";
-    String result = DistantWSAccess.searchPlace(placeName);
-   // Process or display the result
+   String s = DistantWSAccess.searchPlace("Studio 104, Radio France");
+   System.out.println(s);
    
 3. **Search the Artists**
 
@@ -49,13 +49,13 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
 	    String artistInfo = "Billie Eilish";
 	    String s = searchByArtist(artistInfo);
 
-	    // Create an Artist instance
+  // Create an Artist instance
 	    Artist artist = new Artist();
 
-	    // Use the setFromXML method to set the attributes of the Artist instance
+  // Use the setFromXML method to set the attributes of the Artist instance
 	    artist.setFromXML(s);
 
-	    // Print the attributes of the Artist instance to verify correctness
+  // Print the attributes of the Artist instance to verify correctness
 	    System.out.println("First Name: " + artist.getFirstName());
 	    System.out.println("Last Name: " + artist.getLastName());
 	    System.out.println("Alias: " + artist.getAlias());
