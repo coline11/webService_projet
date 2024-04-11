@@ -29,38 +29,36 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
 
 #### Comment utiliser
 
-1. **Recherchez des événements musicaux liés à un artiste, par exemple "Billie Eilish"**
+1. **Recherchez un événement musicaux lié à un artiste, par exemple "Paradise Tour: San Francisco"**
 
    ```java
-   String artistInfo = "Billie Eilish";
-   String s = searchByArtist(artistInfo);
-   System.out.println(s);
-
-2. **Rechercher des événements musicaux liés à un lieu, par exemple "Studio 104, Radio France"**
-
-   ```java
-   String s = DistantWSAccess.searchPlace("Studio 104, Radio France");
-   System.out.println(s);
+		Artist artist = new Artist("Ed", "Sheeran");
+		idArtistMain = addArtist(artist);
    
-3. **Rechercher les artistes**
+		idEventMain = addUpcomingEvent(idArtistMain, "Paradise Tour: San Francisco", "");
+		System.out.println("Ajout d'un événement au numéro de l'artiste " + artistId + " à " + idEventMain);
+
+		MusicEvent me = getEvent(artistId, idEventMain);
+		System.out.println(me);
+
+2. **Rechercher des événements musicaux liés à un artiste, par exemple "Taylor Swift"**
 
    ```java
-     // Rechercher des informations sur l'artiste
-      String artistInfo = "Billie Eilish";
-      String s = searchByArtist(artistInfo);
+		Artist artist = new Artist("Taylor", "Swift");
+		idArtistMain = addArtist(artist);
+		Artist artistEvents = getEvents(idArtistMain);
+		System.out.println(artistEvents.toStringWithEvents());
+   
+3. **Ajouter et rechercher un artiste, par exemple, Billie Eilish**
 
-      // Créer une instance d'artiste
-      Artist artist = new Artist();
+   ```java
+		Artist a;
 
-      // Utilisez la méthode setFromXML pour définir les attributs de l'instance Artist
-      artist.setFromXML(s);
-
-      // Imprimez les attributs de l'instance Artist pour vérifier l'exactitude
-      System.out.println("First Name: " + artist.getFirstName());
-      System.out.println("Last Name: " + artist.getLastName());
-      System.out.println("Alias: " + artist.getAlias());
-      System.out.println("Country: " + artist.getCountry());
-      System.out.println("Gender: " + artist.getGender());
-      System.out.println("Is Dead: " + artist.isDead());
+		Artist artist = new Artist("Billie", "Eilish");
+		idArtistMain = addArtist(artist);
+		System.out.println("Ajout d'un artiste au numéro: " + idArtistMain);
+		a = getArtist(idArtistMain);
+		System.out.println("Artiste: ");
+		System.out.println(a + "\n");
 
 
