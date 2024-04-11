@@ -89,6 +89,8 @@ public class DistantWSAccess {
 		return webServiceResponse;
 	}
 	
+	// TODO: 
+	
 	/**
 	 * Method to test XML parsing
 	 * @param xmlString
