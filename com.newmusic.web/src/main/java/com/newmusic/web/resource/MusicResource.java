@@ -1,6 +1,9 @@
 package com.newmusic.web.resource;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,6 +18,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import com.newmusic.web.data.Artist;
+import com.newmusic.web.data.MusicEvent;
 import com.newmusic.web.service.MusicService;
 
 @Path("/music")
@@ -24,24 +28,27 @@ public class MusicResource {
 	@Context
 	UriInfo uriInfo;
 
-	/*
+	
 	@POST
-	@Path("/{aid}")
+	@Path("/artist/{aid}")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.APPLICATION_XML)
 	public Response addUpcomingEvent(@PathParam("aid") int artistId, MusicEvent event) {
-		service.addUpcomingEvent(artist, event);
+		MusicEvent eventAdded = service.addUpcomingEvent(artistId, event);
+		if(eventAdded == null) {
+			return Response
+					.status(Response.Status.BAD_REQUEST)
+					.build();
+		}
+		
 		URI uri = uriInfo.getRequestUri();
 
-		String newUri = uri.getPath() + "/" + artist.getAlias() + "/" + event.getEventId();
-		if (!artist.getDisamiguation().isEmpty()) {
-			newUri += "_" + artist.getDisamiguation();
-		}
+		String newUri = uri.getPath() + "/" + event.getEventId();
 		return Response.status(Response.Status.CREATED)
-					   .entity(artist)
+					   .entity(event)
 					   .contentLocation(uri.resolve(newUri))
 					   .build();
-	}*/
+	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_XML)
@@ -57,9 +64,6 @@ public class MusicResource {
 		URI uri = uriInfo.getRequestUri();
 
 		String newUri = uri.getPath() + "/" + artist.getArtistsId();
-		/*if (!artist.getDisamiguation().isEmpty()) {
-			newUri += "_" + artist.getDisamiguation();
-		}*/
 		return Response.status(Response.Status.CREATED)
 					   .entity(artist)
 					   .contentLocation(uri.resolve(newUri))
@@ -67,9 +71,9 @@ public class MusicResource {
 	}
 
 	@DELETE
-	@Path("/{id}")
+	@Path("/artist/{aid}")
 	@Produces(MediaType.APPLICATION_XML)
-	public Response deleteArtist(@PathParam("id") int id) {
+	public Response deleteArtist(@PathParam("aid") int id) {
 		if(service.deleteArtist(id)) {
 			return Response.status(Response.Status.OK).build();
 		}
@@ -77,9 +81,9 @@ public class MusicResource {
 	}
 	
 	@GET
-	@Path("/{id}")
+	@Path("/artist/{aid}")
 	@Produces(MediaType.APPLICATION_XML)
-	public Response getArtist(@PathParam("id") int id) {
+	public Response getArtist(@PathParam("aid") int id) {
 		Artist artist = service.getArtist(id);
 		if (artist == null) {
 			return Response.status(Response.Status.NOT_FOUND).build();
@@ -93,10 +97,28 @@ public class MusicResource {
 				.links(link)
 				.build();
 	}
+	
+	@GET
+	@Path("/artist/{aid}/event/{eid}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Response getEvent(@PathParam("aid") int artistId, @PathParam("eid") int eventId) {
+		MusicEvent event = service.getEventByArtistAndId(artistId, eventId);
+		if (event == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		Link link = Link.fromUri(uriInfo.getRequestUri())
+						.rel("self")
+						.type("application/xml")
+						.build();
+		return Response.status(Response.Status.OK)
+				.entity(event)
+				.links(link)
+				.build();
+	}
 
-	/*
+	
 	@DELETE
-	@Path("/{aid}/{eid}")
+	@Path("/artist/{aid}/event/{eid}")
 	@Produces(MediaType.APPLICATION_XML)
 	public Response deleteEvent(@PathParam("aid") int artistId, @PathParam("eid") int musicId) {
 		if (service.deleteEvent(artistId, musicId)) {
@@ -104,9 +126,9 @@ public class MusicResource {
 		}
 		return Response.status(Response.Status.NOT_FOUND).build();
 	}
-	*/
-
-	/*@GET
+	
+	/*
+	@GET
 	@Path("/")
 	@Produces(MediaType.APPLICATION_XML)
 	public Response getUpcomingEventsArtist() {

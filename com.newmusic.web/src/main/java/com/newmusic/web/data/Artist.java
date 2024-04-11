@@ -107,16 +107,40 @@ public class Artist {
 		this.isDead = isDead;
 	}
 	
+	@Override
 	public String toString() {
 		String name = firstName + " " + lastName;
 		if(!alias.isEmpty()) name += " (AKA " + alias + ")";
-		if(!country.isEmpty()) name += "\nBorn in: " + country;
+		if(!country.isEmpty()) name += ":\nBorn in: " + country;
 		if(!gender.isEmpty()) name += "\nGender: " + gender;
 		if(!disamiguation.isEmpty()) name += "\nDisambig: " + disamiguation;
 		name += "\nIs dead: " + isDead;
 		return name;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		// Ignoring id because it's not an inherent property of the artist
+		// Ignoring isDead, country, and gender because they may not have been filled in
+		Artist comparing = (Artist) o;
+		boolean isSame = true;
+		// isSame = isSame && ( comparing.isDead == this.isDead );
+		isSame = isSame && (comparing.getAlias().equals(this.getAlias()));
+		// isSame = isSame && ( comparing.getCountry().equals(this.getCountry()));
+		isSame = isSame && (comparing.getDisamiguation().equals(this.getDisamiguation()));
+		isSame = isSame && (comparing.getFirstName().equals(this.getFirstName()));
+		// isSame = isSame && ( comparing.getGender().equals(this.getGender()));
+		isSame = isSame && (comparing.getLastName().equals(this.getLastName()));
+		return isSame;
+	}
+  
     public void setFromXML(String xmlData) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -170,7 +194,4 @@ public class Artist {
             e.printStackTrace();
         }
     }
-
-
-
 }
