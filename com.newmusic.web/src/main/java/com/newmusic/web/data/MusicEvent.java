@@ -1,112 +1,193 @@
 package com.newmusic.web.data;
 
-import java.time.LocalDate;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Data class for to store information on an event
+ * @author Yang Mattew
+ *
+ */
 @XmlRootElement
 public class MusicEvent {
 	private int eventId;
 	private String type = "";
 	private String eventName = "";
 	private String disambiguation = "";
-	//private LocalDate startDate = Constants.NULL_DATE, endDate = Constants.NULL_DATE;
 	private Artist performer = null;
 	private String location = "";
 	private int score = 999;
-	
+
+	/**
+	 * Empty constructor for running RESTful service
+	 */
 	public MusicEvent() {}
-	
-	public MusicEvent(String name, Artist byWho) {
-		eventName = name;
-		performer = byWho;
-	}
-	
-	public MusicEvent(String name, String disambig, Artist byWho) {
-		this(name, byWho);
-		this.disambiguation = disambig;
-	}
-	
-	public MusicEvent(String name) {
-		eventName = name;
-	}
-	
-	public MusicEvent(Artist byWho) {
-		performer = byWho;
-	}
 
-	public int getEventId() {
-		return eventId;
-	}
+    /**
+     * Constructs a MusicEvent with a name and performer.
+     *
+     * @param name   The name of the event.
+     * @param byWho  The performer of the event.
+     */
+    public MusicEvent(String name, Artist byWho) {
+        eventName = name;
+        performer = byWho;
+    }
 
-	public String getType() {
-		return type;
-	}
+    /**
+     * Constructs a MusicEvent with a name, disambiguation, and artist.
+     *
+     * @param name      The name of the event.
+     * @param disambig  The disambiguation of the event.
+     * @param byWho     The performer of the event.
+     */
+    public MusicEvent(String name, String disambig, Artist byWho) {
+        this(name, byWho);
+        this.disambiguation = disambig;
+    }
 
-	public String getEventName() {
-		return eventName;
-	}
+    /**
+     * Constructs a MusicEvent with only the event's name.
+     *
+     * @param name  The name of the event.
+     */
+    public MusicEvent(String name) {
+        eventName = name;
+    }
 
-	public String getDisambiguation() {
-		return disambiguation;
-	}
+    /**
+     * Constructs a MusicEvent with only an artist.
+     *
+     * @param byWho  The artist of the event.
+     */
+    public MusicEvent(Artist byWho) {
+        performer = byWho;
+    }
 
-	/*public LocalDate getStartDate() {
-		return startDate;
-	}
+    /**
+     * Returns the event ID.
+     *
+     * @return The event ID.
+     */
+    public int getEventId() {
+        return eventId;
+    }
 
-	public LocalDate getEndDate() {
-		return endDate;
-	}*/
+    /**
+     * Returns the type of the event.
+     *
+     * @return The type of the event.
+     */
+    public String getType() {
+        return type;
+    }
 
-	public Artist getPerformer() {
-		return performer;
-	}
+    /**
+     * Returns the name of the event.
+     *
+     * @return The name of the event.
+     */
+    public String getEventName() {
+        return eventName;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    /**
+     * Returns the disambiguation of the event.
+     *
+     * @return The disambiguation of the event.
+     */
+    public String getDisambiguation() {
+        return disambiguation;
+    }
 
-	public int getScore() {
-		return score;
-	}
+    /**
+     * Returns the performer of the event.
+     *
+     * @return The performer of the event.
+     */
+    public Artist getPerformer() {
+        return performer;
+    }
 
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
+    /**
+     * Returns the location of the event.
+     *
+     * @return The location of the event.
+     */
+    public String getLocation() {
+        return location;
+    }
 
+    /**
+     * Returns the score of the event.
+     *
+     * @return The score of the event.
+     */
+    public int getScore() {
+        return score;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    /**
+     * Sets the event ID.
+     *
+     * @param eventId The event ID to set.
+     */
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
 
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-	
-	public void setDisambiguation(String disambiguation) {
-		this.disambiguation = disambiguation;
-	}
+    /**
+     * Sets the type of the event.
+     *
+     * @param type The type of the event to set.
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	/*public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
+    /**
+     * Sets the name of the event.
+     *
+     * @param eventName The name of the event to set.
+     */
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}*/
+    /**
+     * Sets the disambiguation of the event.
+     *
+     * @param disambiguation The disambiguation of the event to set.
+     */
+    public void setDisambiguation(String disambiguation) {
+        this.disambiguation = disambiguation;
+    }
 
-	public void setPerformer(Artist performer) {
-		this.performer = performer;
-	}
+    /**
+     * Sets the performer of the event.
+     *
+     * @param performer The performer of the event to set.
+     */
+    public void setPerformer(Artist performer) {
+        this.performer = performer;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    /**
+     * Sets the location of the event.
+     *
+     * @param location The location of the event to set.
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setScore(int score) {
-		this.score = score;
-	}
+    /**
+     * Sets the score of the event.
+     *
+     * @param score The score of the event to set.
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
 	
 	@Override
 	public String toString() {
@@ -114,7 +195,6 @@ public class MusicEvent {
 		if(!location.equals("")) event += ", at: " + location;
 		if(!type.equals("")) event += "\nType: " + type;
 		if(score != 999) event += "\nScore: " + score;
-		event += "\nArtist: " + performer;
 		return event;
 	}
 	

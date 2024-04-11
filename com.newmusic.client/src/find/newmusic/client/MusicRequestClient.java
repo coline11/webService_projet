@@ -27,6 +27,9 @@ public class MusicRequestClient {
 			return;
 		}
 
+		Artist artistEvents = getEvents(1);
+		System.out.println(artistEvents.toStringWithEvents());
+		
 		testDeleting();
 	}
 
@@ -38,7 +41,7 @@ public class MusicRequestClient {
 	 * @return Whether or not the artist was able to be added.
 	 */
 	public static boolean testAddingArtist(String fName, String lName) {
-		Artist a;
+		//Artist a;
 
 		Artist artist = new Artist(fName, lName);
 		idArtistMain = addArtist(artist);
@@ -46,10 +49,10 @@ public class MusicRequestClient {
 			System.out.println("Artist " + fName + " already exists!");
 			return false;
 		}
-		System.out.println("Added artist at: " + idArtistMain);
-		a = getArtist(idArtistMain);
-		System.out.println("Artist: ");
-		System.out.println(a + "\n");
+		//System.out.println("Added artist at: " + idArtistMain);
+		//a = getArtist(idArtistMain);
+		//System.out.println("Artist: ");
+		//System.out.println(a + "\n");
 		return true;
 	}
 
@@ -85,10 +88,10 @@ public class MusicRequestClient {
 			return false;
 		}
 		
-		System.out.println("Added event at: " + artistId + "/" + idEventMain);
+		//System.out.println("Added event at: " + artistId + "/" + idEventMain);
 
-		MusicEvent me = getEvent(artistId, idEventMain);
-		System.out.println(me);
+		//MusicEvent me = getEvent(artistId, idEventMain);
+		//System.out.println(me);
 		return true;
 	}
 
@@ -166,7 +169,7 @@ public class MusicRequestClient {
 	 *         code
 	 */
 	private static Integer addArtist(Artist artist) {
-		System.out.println("Adding " + artist.getFirstName() + " " + artist.getLastName() + "...");
+		//System.out.println("Adding " + artist.getFirstName() + " " + artist.getLastName() + "...");
 		WebClient c = WebClient.create(webServiceUrl);
 		Response r = c.type(MediaType.APPLICATION_XML).post(artist);
 		int response = 0;
@@ -175,7 +178,7 @@ public class MusicRequestClient {
 		}
 
 		String uri = r.getHeaderString("Content-Location");
-		System.out.println("Ok.");
+		//System.out.println("Ok.");
 
 		c.close();
 
@@ -189,7 +192,7 @@ public class MusicRequestClient {
 	 * @return The artist in question
 	 */
 	private static Artist getArtist(Integer id) {
-		System.out.println("Getting " + id + "... ");
+		//System.out.println("Getting artist number " + id + "... ");
 		WebClient c = WebClient.create(webServiceUrl).path("artist").path(id);
 		Artist s = null;
 		try {
@@ -208,12 +211,12 @@ public class MusicRequestClient {
 	 * @return Whether or not we were able to succesfully delete the artist
 	 */
 	private static Boolean deleteArtist(Integer id) {
-		System.out.println("Deleting " + id + "... ");
+		//System.out.println("Deleting " + id + "... ");
 		WebClient c = WebClient.create(webServiceUrl).path("artist").path(id);
 		int status = c.delete().getStatus();
 
 		if (status == 200) {
-			System.out.println("OK.");
+			//System.out.println("OK.");
 			return true;
 		}
 		System.out.println("Oops!");
@@ -232,7 +235,7 @@ public class MusicRequestClient {
 	 *         code
 	 */
 	private static Integer addUpcomingEvent(int idArtist, String eventName, String disambig) {
-		System.out.println("Adding event: " + eventName);
+		//System.out.println("Adding event: " + eventName);
 		WebClient c = WebClient.create(webServiceUrl).path("artist").path(idArtist);
 
 		Artist a = getArtist(idArtist);
@@ -252,7 +255,7 @@ public class MusicRequestClient {
 		}
 
 		String uri = r.getHeaderString("Content-Location");
-		System.out.println("OK.");
+		//System.out.println("OK.");
 
 		return Integer.parseInt(uri.substring(uri.lastIndexOf('/') + 1));
 	}
@@ -275,6 +278,26 @@ public class MusicRequestClient {
 		}
 		c.close();
 		return s;
+	}
+
+	/**
+	 * Get an event, given its artist and event id.
+	 * 
+	 * @param artistId The artist's id
+	 * @param eventId  The event's id
+	 * @return The event, if it exists, null otherwise
+	 */
+	private static Artist getEvents(Integer artistId) {
+		System.out.println("Getting events from artist number " + artistId + "... ");
+		WebClient c = WebClient.create(webServiceUrl).path("artist").path(artistId).path("event");
+		Artist events = null;
+		try {
+			events = c.get(Artist.class);
+		} catch (NotFoundException e) {
+			System.out.println("Oops! Event not found!");
+		}
+		c.close();
+		return events;
 	}
 
 	/**

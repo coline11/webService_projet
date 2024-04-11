@@ -9,7 +9,7 @@ import com.newmusic.web.data.MusicEvent;
 import com.newmusic.web.resource.DistantWSAccess;
 
 /**
- * Music service that implements the different request methods
+ * Music service that implements the different request methods.
  * 
  * @author mattewyang1325@gmail.com
  *
@@ -61,8 +61,9 @@ public class MusicService {
 	 * Adds an upcoming event to the list. The event will be added to
 	 * the pre-existing list and sorted according to its start date.
 	 * 
-	 * @param artist The artist headlining the event
+	 * @param artistId The artist headlining the event
 	 * @param event  The event to be added
+	 * @return The {@link MusicEvent} added
 	 */
 	public MusicEvent addUpcomingEvent(int artistId, MusicEvent event) {
 		Artist artist = artistById.get(artistId);
@@ -72,7 +73,7 @@ public class MusicService {
 		
 		int id = getNewEventId(artist);
 		event.setEventId(id);
-
+		
 		upcomingEventsArtist.get(artist).add(event);
 		eventIdsByArtist.get(artist).add(event.getEventId());
 		eventByIdByArtistId.get(artist.getArtistsId()).put(id, event);
@@ -84,6 +85,7 @@ public class MusicService {
 	 * Adds an artist which does not exist yet, and sets its id.
 	 * 
 	 * @param artist The artist to add
+	 * @return The Artist added
 	 */
 	public Artist addArtist(Artist artist) {
 		artist = DistantWSAccess.getArtist(artist, !artist.getAlias().equals(""));
@@ -145,8 +147,8 @@ public class MusicService {
 	 * Find the {@link MusicEvent} based on the artist who headlined it and the
 	 * event's unique identifier
 	 * 
-	 * @param a  The artist
-	 * @param id The music event's identifier
+	 * @param artistId  The id of the artist
+	 * @param eventId The music event's identifier
 	 * @return The MusicEvent, if it exists, otherwise, null
 	 */
 	public MusicEvent getEventByArtistAndId(Integer artistId, Integer eventId) {
@@ -159,11 +161,32 @@ public class MusicService {
 		if(musicEvents == null) return null;
 		return musicEvents.get(eventId);
 	}
+	
+	/**
+	 * Get all of an artist's events.
+	 * @param artistId The id of the artist.
+	 * @return All of the artist's events.
+	 */
+	public Artist getArtistEvents(int artistId){
+		Artist a = artistById.get(artistId);
+		a.setEvents(new ArrayList<MusicEvent>(eventByIdByArtistId.get(artistId).values()));
+		return a;
+		
+	}
 
+	/**
+	 * Get all events across all artists
+	 * @return A {@link HashMap} associating an {@link Artist} to their {@link MusicEvent}s.
+	 */
 	public HashMap<Artist, ArrayList<MusicEvent>> getUpcomingEventsArtist() {
 		return upcomingEventsArtist;
 	}
 	
+	/**
+	 * Get a specific {@link Artist}
+	 * @param id The id of the {@link Artist}
+	 * @return The {@link Artist}, or null if it doesn't exist
+	 */
 	public Artist getArtist(int id) {
 		return artistById.get(id);
 	}

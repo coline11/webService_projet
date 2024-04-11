@@ -23,15 +23,26 @@ import com.newmusic.web.data.Artist;
 
 /**
  * Class that handles the API calls to MusicBrainz and fills out the Artist instance.
- * @author Yang Mattew & Wu Jingyi
+ * @author Yang Mattew
+ * @author Wu Jingyi
  *
  */
 public class DistantWSAccess {
 	
+	/**
+	 * Search for an artist using their alias
+	 * @param a The artist in question
+	 * @return The XML serch result
+	 */
 	private static String searchByArtistAlias(Artist a) {
 		return searchByArtist(a.getAlias());
 	}
-	
+
+	/**
+	 * Search for an artist using their name
+	 * @param a The artist in question
+	 * @return The XML serch result
+	 */
 	private static String searchByArtistName(Artist a) {
 		String firstName = a.getFirstName();
 		String lastName = a.getLastName();
@@ -41,8 +52,14 @@ public class DistantWSAccess {
 		return searchByArtist(searchQuery);
 	}
 	
+	/**
+	 * Search for an artist by calling the MusicBrainz API
+	 * @param artistInfo How we'll search for the artist
+	 * @return The XML serch result
+	 */
 	private static String searchByArtist(String artistInfo) {
 		try {
+			// https://www.w3schools.com/tags/ref_urlencode.ASP
 			artistInfo = URLEncoder.encode(artistInfo, "UTF-8");
 			artistInfo = artistInfo.replaceAll("\\+", "%20"); // 'Cause encoding translates space into + and not %20
 			String artistSearch = "artist:%22" + artistInfo + "%22";
@@ -52,27 +69,45 @@ public class DistantWSAccess {
 			return "";
 		}
 	}
-	
+
+	/**
+	 * Search for an event by calling the MusicBrainz API
+	 * @param eventName How we'll search for the event
+	 * @return The XML serch result
+	 */
 	private static String searchEvent(String eventName) {
 		String searchTerm = "";
 		try {
 			searchTerm = URLEncoder.encode(eventName, "UTF-8");
+			searchTerm = searchTerm.replaceAll("\\+", "%20");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		return search("event", "event:%22" + searchTerm + "%22"); // test
 	}
-	
+
+	/**
+	 * Search for a place by calling the MusicBrainz API
+	 * @param eventName How we'll search for the place
+	 * @return The XML serch result
+	 */
 	private static String searchPlace(String placeName) {
 		String searchTerm = "";
 		try {
 			searchTerm = URLEncoder.encode(placeName, "UTF-8");
+			searchTerm = searchTerm.replaceAll("\\+", "%20");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		return search("place", "place:%22" + searchTerm + "%22"); // test
 	}
 	
+	/**
+	 * Search for something by calling the MusicBrainz APi
+	 * @param type The type of search we're doing
+	 * @param query What we're trying to find information about
+	 * @return The XML serch result
+	 */
 	public static String search(String type, String query) {
 		String webServiceResponse = "";
 		try {
@@ -93,8 +128,6 @@ public class DistantWSAccess {
 
             // Process the response as needed
             webServiceResponse = responseBuilder.toString();
-            
-            //System.out.println(webServiceResponse);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -106,6 +139,7 @@ public class DistantWSAccess {
 	
 	/**
 	 * Create an instance of the {@link Artist} class based on the xml results gotten from the API request.
+	 * @param artist The artist where we'll add the information
 	 * @param xmlData The results from the API request
 	 * @return The {@link Artist} instance
 	 */
@@ -150,7 +184,6 @@ public class DistantWSAccess {
 
             // Get country element
             // Check first for detailled information, otherwise fall back on acronym
-
             NodeList areaNode = artistElement.getElementsByTagName("area");
             if(areaNode != null && areaNode.getLength() > 0) {
             	Element areaElement = (Element) areaNode.item(0);
@@ -192,21 +225,15 @@ public class DistantWSAccess {
 	 */
 	public static Artist getArtist(Artist a, boolean byAlias) {
 		String result = "";
+		
+		// Get XML result
 		if (byAlias) {
 			result = searchByArtistAlias(a);
 		} else {
 			result = searchByArtistName(a);
 		}
+		
+		// Parse XML
 		return setFromXML(a, result);
 	}
-
-    /*
-    public static void main(String[] args) {
-    	Artist a = new Artist("Billie", "Eilish");
-    	String result = searchByArtistName(a);
-    	//System.out.println(result);
-    	a = setFromXML(a, result);
-    	
-    	System.out.println(a);
-    }*/
 }
