@@ -9,7 +9,7 @@ public class MusicEvent {
 	private int eventId;
 	private String type = "";
 	private String eventName = "";
-	private LocalDate startDate = Constants.NULL_DATE, endDate = Constants.NULL_DATE;
+	//private LocalDate startDate = Constants.NULL_DATE, endDate = Constants.NULL_DATE;
 	private Artist performer = null;
 	private String location = "";
 	private int score = 999;
@@ -41,13 +41,13 @@ public class MusicEvent {
 		return eventName;
 	}
 
-	public LocalDate getStartDate() {
+	/*public LocalDate getStartDate() {
 		return startDate;
 	}
 
 	public LocalDate getEndDate() {
 		return endDate;
-	}
+	}*/
 
 	public Artist getPerformer() {
 		return performer;
@@ -74,13 +74,13 @@ public class MusicEvent {
 		this.eventName = eventName;
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	/*public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
-	}
+	}*/
 
 	public void setPerformer(Artist performer) {
 		this.performer = performer;
@@ -92,5 +92,35 @@ public class MusicEvent {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	@Override
+	public String toString() {
+		String event = eventName;
+		event += ", at: " + location;
+		event += "\nType: " + type;
+		event += "\nScore: " + score;
+		event += "\nArtist: " + performer;
+		return event;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		// Ignoring id because it's not an inherent property of the artist
+		MusicEvent comparing = (MusicEvent) o;
+		boolean isEqual = true;
+		isEqual = isEqual && (comparing.getType().equals(getType()));
+		isEqual = isEqual && (comparing.getEventName().equals(getEventName()));
+		isEqual = isEqual && (comparing.getPerformer().equals(getPerformer()));
+		isEqual = isEqual && (comparing.getLocation().equals(getLocation()));
+		isEqual = isEqual && (comparing.getScore() == getScore());
+		return isEqual;
 	}
 }

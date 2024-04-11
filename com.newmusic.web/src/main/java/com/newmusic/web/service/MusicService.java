@@ -37,6 +37,7 @@ public class MusicService {
 
 		// Since the event ids are stored in an arraylist, and this list is sorted
 		// smallest to biggest, we just need to know the last number added
+		if(eventIds.size() == 0) return 0;
 		int newId = eventIds.get(eventIds.size() - 1) + 1;
 		return newId;
 	}
@@ -58,38 +59,38 @@ public class MusicService {
 	}
 
 	/**
-	 * Adds an upcoming event to the list. If the artist is not in the list, they
-	 * will be added, along with the event. Otherwise, the event will be added to
+	 * Adds an upcoming event to the list. The event will be added to
 	 * the pre-existing list and sorted according to its start date.
 	 * 
 	 * @param artist The artist headlining the event
 	 * @param event  The event to be added
 	 */
-	/*public void addUpcomingEvent(Artist artist, MusicEvent event) {
+	public MusicEvent addUpcomingEvent(int artistId, MusicEvent event) {
+		Artist artist = artistById.get(artistId);
+		if(eventByIdByArtistId.get(artistId).containsValue(event)) {
+			return null;
+		}
+		
 		int id = getNewEventId(artist);
 		event.setEventId(id);
 
-		if (!upcomingEventsArtist.containsKey(artist)) {
-			addArtist(artist);
-		}
-
-		ArrayList<MusicEvent> alme = upcomingEventsArtist.get(artist);
-		alme.add(event);
-
-		ArrayList<Integer> ali = eventIdsByArtist.get(artist);
-		ali.add(event.getEventId());
-		
-		HashMap<Integer, MusicEvent> hmime = eventByIdByArtistId.get(artist.getArtistsId());
-		hmime.put(id, event);
+		upcomingEventsArtist.get(artist).add(event);
+		eventIdsByArtist.get(artist).add(event.getEventId());
+		eventByIdByArtistId.get(artist.getArtistsId()).put(id, event);
+		return event;
 		// alme.sort(new SortByDate());
-	}*/
-
+	}
+	
 	/**
-	 * Adds an artist which does not exist yet.
+	 * Adds an artist which does not exist yet, and sets its id.
 	 * 
 	 * @param artist The artist to add
 	 */
 	public Artist addArtist(Artist artist) {
+		if(artistById.containsValue(artist)) {
+			return null;
+		}
+		
 		int id = getNewArtistId();
 		artist.setArtistId(id);
 
@@ -112,24 +113,37 @@ public class MusicService {
 		boolean wasRemoved = upcomingEventsArtist.remove(artist) != null;
 		return wasRemoved;
 	}
+	
+	/*
+	private static HashMap<Artist, ArrayList<MusicEvent>> upcomingEventsArtist = new HashMap<Artist, ArrayList<MusicEvent>>();
 
+	private static HashMap<Artist, ArrayList<Integer>> eventIdsByArtist = new HashMap<Artist, ArrayList<Integer>>();
+	private static HashMap<Integer, HashMap<Integer, MusicEvent>> eventByIdByArtistId = new HashMap<Integer, HashMap<Integer, MusicEvent>>();
+	 */
+	
 	/**
 	 * Deletes a specific event from an artist's upcoming event list
 	 * 
-	 * @param artist The id of the artist headlining the event
-	 * @param me     The id of the event to delete
-	 * @return Whether or not the event was sucessfully deleted
+	 * @param artistId The id of the artist headlining the event
+	 * @param musicId The id of the event to delete
+	 *  @return Whether or not the event was sucessfully deleted
 	 */
-	/*public boolean deleteEvent(int artistId, int musicId) {
-		Artist artist = artistById.get(artistId);
-		if(artist == null) return false;
+	public boolean deleteEvent(Integer artistId, Integer musicId) {
+		if(!artistById.containsKey(artistId)) {
+			return false;
+		}
+		if(!eventByIdByArtistId.get(artistId).containsKey(musicId)) {
+			return false;
+		}
+		Artist eventsArtist = artistById.get(artistId);
+		MusicEvent event = eventByIdByArtistId.get(artistId).get(musicId);
 		
-		MusicEvent me = eventByIdByArtistId.get(artistId).get(musicId);
-		return upcomingEventsArtist.remove(artist, me);
-	}*/
-
-	public HashMap<Artist, ArrayList<MusicEvent>> getUpcomingEventsArtist() {
-		return upcomingEventsArtist;
+		boolean allDeleted = true;
+		allDeleted = allDeleted && upcomingEventsArtist.get(eventsArtist).remove(event);
+		allDeleted = allDeleted && eventIdsByArtist.get(eventsArtist).remove(musicId);
+		allDeleted = allDeleted && eventByIdByArtistId.get(artistId).remove(musicId, event);
+		
+		return allDeleted;
 	}
 
 	/**
@@ -140,11 +154,20 @@ public class MusicService {
 	 * @param id The music event's identifier
 	 * @return The MusicEvent, if it exists, otherwise, null
 	 */
-	/*public MusicEvent getEventByArtistAndId(Integer artistId, Integer eventId) {
+	public MusicEvent getEventByArtistAndId(Integer artistId, Integer eventId) {
+		//System.out.println(artistId + "; " + eventId);
+		//System.out.println(eventByIdByArtistId);
+		
 		HashMap<Integer, MusicEvent> musicEvents = eventByIdByArtistId.get(artistId);
+		
+		//System.out.println(musicEvents);
 		if(musicEvents == null) return null;
 		return musicEvents.get(eventId);
-	}*/
+	}
+
+	public HashMap<Artist, ArrayList<MusicEvent>> getUpcomingEventsArtist() {
+		return upcomingEventsArtist;
+	}
 	
 	public Artist getArtist(int id) {
 		return artistById.get(id);
