@@ -22,98 +22,190 @@ public class Artist {
 
 	private ArrayList<MusicEvent> events = new ArrayList<MusicEvent>();
 	
+	/**
+	 * Empty constructor for running RESTful service
+	 */
 	public Artist() {}
 	
+	/**
+	 * Declare artist using their name
+	 * @param fName The artist's first name
+	 * @param lName The artist's last name
+	 */
 	public Artist(String fName, String lName) {
 		artistFirstName = fName;
 		artistLastName = lName;
 	}
 	
+	/**
+	 * Declare artist using their alias
+	 * @param a The artist's alias
+	 */
 	public Artist(String a) {
 		artistAlias = a;
 	}
+    /**
+     * Gets the ID of the artist.
+     * @return The artist's ID.
+     */
+    public int getArtistsId() {
+        return artistId;
+    }
 
-	public int getArtistsId() {
-		return artistId;
-	}
+    /**
+     * Gets the first name of the artist.
+     * @return The artist's first name.
+     */
+    public String getFirstName() {
+        return artistFirstName;
+    }
 
-	public String getFirstName() {
-		return artistFirstName;
-	}
+    /**
+     * Gets the last name of the artist.
+     * @return The artist's last name.
+     */
+    public String getLastName() {
+        return artistLastName;
+    }
 
-	public String getLastName() {
-		return artistLastName;
-	}
-	
-	public String[] getName() {
-		String ans[] = {artistFirstName, artistLastName};
-		return ans;
-	}
+    /**
+     * Gets an array containing the first and last name of the artist.
+     * @return An array containing the first and last name of the artist.
+     */
+    public String[] getName() {
+        String ans[] = {artistFirstName, artistLastName};
+        return ans;
+    }
 
-	public String getAlias() {
-		return artistAlias;
-	}
+    /**
+     * Gets the alias of the artist.
+     * @return The artist's alias.
+     */
+    public String getAlias() {
+        return artistAlias;
+    }
 
-	public String getCountry() {
-		return artistCountry;
-	}
+    /**
+     * Gets the country of the artist.
+     * @return The artist's country.
+     */
+    public String getCountry() {
+        return artistCountry;
+    }
 
-	public String getGender() {
-		return artistGender;
-	}
+    /**
+     * Gets the gender of the artist.
+     * @return The artist's gender.
+     */
+    public String getGender() {
+        return artistGender;
+    }
 
-	public String getDisambiguation() {
-		return artistDisambiguation;
-	}
+    /**
+     * Gets the disambiguation information of the artist.
+     * @return The artist's disambiguation information.
+     */
+    public String getDisambiguation() {
+        return artistDisambiguation;
+    }
 
-	public boolean isDead() {
-		return artistIsDead;
-	}
+    /**
+     * Checks if the artist is dead.
+     * @return True if the artist is dead, otherwise false.
+     */
+    public boolean isDead() {
+        return artistIsDead;
+    }
 
-	public void setArtistId(int artistId) {
-		this.artistId = artistId;
-	}
+    /**
+     * Sets the ID of the artist.
+     * @param artistId The artist's ID.
+     */
+    public void setArtistId(int artistId) {
+        this.artistId = artistId;
+    }
 
-	public void setFirstName(String firstName) {
-		this.artistFirstName = firstName;
-	}
+    /**
+     * Sets the first name of the artist.
+     * @param firstName The artist's first name.
+     */
+    public void setFirstName(String firstName) {
+        this.artistFirstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.artistLastName = lastName;
-	}
-	
-	public void setName(String fName, String lName) {
-		artistFirstName = fName;
-		artistLastName = lName;
-	}
+    /**
+     * Sets the last name of the artist.
+     * @param lastName The artist's last name.
+     */
+    public void setLastName(String lastName) {
+        this.artistLastName = lastName;
+    }
 
-	public void setAlias(String alias) {
-		this.artistAlias = alias;
-	}
+    /**
+     * Sets the name of the artist.
+     * @param fName The artist's first name.
+     * @param lName The artist's last name.
+     */
+    public void setName(String fName, String lName) {
+        artistFirstName = fName;
+        artistLastName = lName;
+    }
 
-	public void setCountry(String country) {
-		this.artistCountry = country;
-	}
+    /**
+     * Sets the alias of the artist.
+     * @param alias The artist's alias.
+     */
+    public void setAlias(String alias) {
+        this.artistAlias = alias;
+    }
 
-	public void setGender(String gender) {
-		this.artistGender = gender;
-	}
-	
-	public void setDisambiguation(String disambiguation) {
-		this.artistDisambiguation = disambiguation;
-	}
+    /**
+     * Sets the country of the artist.
+     * @param country The artist's country.
+     */
+    public void setCountry(String country) {
+        this.artistCountry = country;
+    }
 
-	public void setDead(boolean isDead) {
-		this.artistIsDead = isDead;
-	}
-    
-	public void setEvents(ArrayList<MusicEvent> alme) {
-		events = alme;
-	}
-	
-	public ArrayList<MusicEvent> getEvents(){
-		return events;
-	}
+    /**
+     * Sets the gender of the artist.
+     * @param gender The artist's gender.
+     */
+    public void setGender(String gender) {
+        this.artistGender = gender;
+    }
+
+    /**
+     * Sets the disambiguation information of the artist.
+     * @param disambiguation The artist's disambiguation information.
+     */
+    public void setDisambiguation(String disambiguation) {
+        this.artistDisambiguation = disambiguation;
+    }
+
+    /**
+     * Sets whether the artist is dead or alive.
+     * @param isDead True if the artist is dead, otherwise false.
+     */
+    public void setDead(boolean isDead) {
+        this.artistIsDead = isDead;
+    }
+
+    /**
+     * Sets the list of events associated with the artist.
+     * @param alme ArrayList of MusicEvent objects representing the events.
+     */
+    public void setEvents(ArrayList<MusicEvent> alme) {
+        events = alme;
+    }
+
+    /**
+     * Gets the list of events associated with the artist.
+     * @return ArrayList of MusicEvent objects representing the events.
+     */
+    public ArrayList<MusicEvent> getEvents(){
+        return events;
+    }
 	
 	
 	@Override
@@ -127,6 +219,10 @@ public class Artist {
 		return name;
 	}
 	
+	/**
+	 * The toString, but with the saved events
+	 * @return The toString, but with the saved events
+	 */
 	public String toStringWithEvents() {
 		String regularOutput = toString();
 		return regularOutput + "\nEvents saved: " + getEvents();

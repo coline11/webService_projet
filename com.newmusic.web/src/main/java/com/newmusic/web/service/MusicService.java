@@ -61,8 +61,9 @@ public class MusicService {
 	 * Adds an upcoming event to the list. The event will be added to
 	 * the pre-existing list and sorted according to its start date.
 	 * 
-	 * @param artist The artist headlining the event
+	 * @param artistId The artist headlining the event
 	 * @param event  The event to be added
+	 * @return The {@link MusicEvent} added
 	 */
 	public MusicEvent addUpcomingEvent(int artistId, MusicEvent event) {
 		Artist artist = artistById.get(artistId);
@@ -84,6 +85,7 @@ public class MusicService {
 	 * Adds an artist which does not exist yet, and sets its id.
 	 * 
 	 * @param artist The artist to add
+	 * @return The Artist added
 	 */
 	public Artist addArtist(Artist artist) {
 		artist = DistantWSAccess.getArtist(artist, !artist.getAlias().equals(""));
@@ -145,8 +147,8 @@ public class MusicService {
 	 * Find the {@link MusicEvent} based on the artist who headlined it and the
 	 * event's unique identifier
 	 * 
-	 * @param a  The artist
-	 * @param id The music event's identifier
+	 * @param artistId  The id of the artist
+	 * @param eventId The music event's identifier
 	 * @return The MusicEvent, if it exists, otherwise, null
 	 */
 	public MusicEvent getEventByArtistAndId(Integer artistId, Integer eventId) {

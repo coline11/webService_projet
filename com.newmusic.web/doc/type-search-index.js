@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.newmusic.web.data","l":"Artist"},{"p":"com.newmusic.web.resource","l":"DistantWSAccess"},{"p":"com.newmusic.web.data","l":"MusicEvent"},{"p":"com.newmusic.web.resource","l":"MusicResource"},{"p":"com.newmusic.web.service","l":"MusicService"}];updateSearchResults();

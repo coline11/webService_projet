@@ -16,83 +16,178 @@ public class MusicEvent {
 	private Artist performer = null;
 	private String location = "";
 	private int score = 999;
-	
+
+	/**
+	 * Empty constructor for running RESTful service
+	 */
 	public MusicEvent() {}
-	
-	public MusicEvent(String name, Artist byWho) {
-		eventName = name;
-		performer = byWho;
-	}
-	
-	public MusicEvent(String name, String disambig, Artist byWho) {
-		this(name, byWho);
-		this.disambiguation = disambig;
-	}
-	
-	public MusicEvent(String name) {
-		eventName = name;
-	}
-	
-	public MusicEvent(Artist byWho) {
-		performer = byWho;
-	}
 
-	public int getEventId() {
-		return eventId;
-	}
+    /**
+     * Constructs a MusicEvent with a name and performer.
+     *
+     * @param name   The name of the event.
+     * @param byWho  The performer of the event.
+     */
+    public MusicEvent(String name, Artist byWho) {
+        eventName = name;
+        performer = byWho;
+    }
 
-	public String getType() {
-		return type;
-	}
+    /**
+     * Constructs a MusicEvent with a name, disambiguation, and artist.
+     *
+     * @param name      The name of the event.
+     * @param disambig  The disambiguation of the event.
+     * @param byWho     The performer of the event.
+     */
+    public MusicEvent(String name, String disambig, Artist byWho) {
+        this(name, byWho);
+        this.disambiguation = disambig;
+    }
 
-	public String getEventName() {
-		return eventName;
-	}
+    /**
+     * Constructs a MusicEvent with only the event's name.
+     *
+     * @param name  The name of the event.
+     */
+    public MusicEvent(String name) {
+        eventName = name;
+    }
 
-	public String getDisambiguation() {
-		return disambiguation;
-	}
+    /**
+     * Constructs a MusicEvent with only an artist.
+     *
+     * @param byWho  The artist of the event.
+     */
+    public MusicEvent(Artist byWho) {
+        performer = byWho;
+    }
 
-	public Artist getPerformer() {
-		return performer;
-	}
+    /**
+     * Returns the event ID.
+     *
+     * @return The event ID.
+     */
+    public int getEventId() {
+        return eventId;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    /**
+     * Returns the type of the event.
+     *
+     * @return The type of the event.
+     */
+    public String getType() {
+        return type;
+    }
 
-	public int getScore() {
-		return score;
-	}
+    /**
+     * Returns the name of the event.
+     *
+     * @return The name of the event.
+     */
+    public String getEventName() {
+        return eventName;
+    }
 
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
+    /**
+     * Returns the disambiguation of the event.
+     *
+     * @return The disambiguation of the event.
+     */
+    public String getDisambiguation() {
+        return disambiguation;
+    }
 
+    /**
+     * Returns the performer of the event.
+     *
+     * @return The performer of the event.
+     */
+    public Artist getPerformer() {
+        return performer;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    /**
+     * Returns the location of the event.
+     *
+     * @return The location of the event.
+     */
+    public String getLocation() {
+        return location;
+    }
 
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-	
-	public void setDisambiguation(String disambiguation) {
-		this.disambiguation = disambiguation;
-	}
+    /**
+     * Returns the score of the event.
+     *
+     * @return The score of the event.
+     */
+    public int getScore() {
+        return score;
+    }
 
-	public void setPerformer(Artist performer) {
-		this.performer = performer;
-	}
+    /**
+     * Sets the event ID.
+     *
+     * @param eventId The event ID to set.
+     */
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    /**
+     * Sets the type of the event.
+     *
+     * @param type The type of the event to set.
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setScore(int score) {
-		this.score = score;
-	}
+    /**
+     * Sets the name of the event.
+     *
+     * @param eventName The name of the event to set.
+     */
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    /**
+     * Sets the disambiguation of the event.
+     *
+     * @param disambiguation The disambiguation of the event to set.
+     */
+    public void setDisambiguation(String disambiguation) {
+        this.disambiguation = disambiguation;
+    }
+
+    /**
+     * Sets the performer of the event.
+     *
+     * @param performer The performer of the event to set.
+     */
+    public void setPerformer(Artist performer) {
+        this.performer = performer;
+    }
+
+    /**
+     * Sets the location of the event.
+     *
+     * @param location The location of the event to set.
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /**
+     * Sets the score of the event.
+     *
+     * @param score The score of the event to set.
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
 	
 	@Override
 	public String toString() {

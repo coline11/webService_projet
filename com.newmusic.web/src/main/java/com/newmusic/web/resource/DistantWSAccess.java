@@ -139,6 +139,7 @@ public class DistantWSAccess {
 	
 	/**
 	 * Create an instance of the {@link Artist} class based on the xml results gotten from the API request.
+	 * @param artist The artist where we'll add the information
 	 * @param xmlData The results from the API request
 	 * @return The {@link Artist} instance
 	 */
