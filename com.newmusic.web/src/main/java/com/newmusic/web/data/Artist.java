@@ -1,26 +1,36 @@
 package com.newmusic.web.data;
 
+import java.util.ArrayList;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Data class for to store information on an artist
+ * @author Yang Mattew
+ *
+ */
 @XmlRootElement
 public class Artist {
 	private int artistId;
-	private String firstName = "", lastName = "", alias = "";
-	//private LocalDate birthdate = Constants.NULL_DATE;
-	private String country = "";
-	private String gender = "";
-	private String disamiguation = "";
-	private boolean isDead = false;
+    private String artistFirstName = "";
+    private String artistLastName = "";
+    private String artistAlias = "";
+    private String artistCountry = "";
+    private String artistGender = "";
+    private String artistDisambiguation = "";
+    private boolean artistIsDead = false;
+
+	private ArrayList<MusicEvent> events = new ArrayList<MusicEvent>();
 	
 	public Artist() {}
 	
 	public Artist(String fName, String lName) {
-		firstName = fName;
-		lastName = lName;
+		artistFirstName = fName;
+		artistLastName = lName;
 	}
 	
 	public Artist(String a) {
-		alias = a;
+		artistAlias = a;
 	}
 
 	public int getArtistsId() {
@@ -28,36 +38,36 @@ public class Artist {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return artistFirstName;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return artistLastName;
 	}
 	
 	public String[] getName() {
-		String ans[] = {firstName, lastName};
+		String ans[] = {artistFirstName, artistLastName};
 		return ans;
 	}
 
 	public String getAlias() {
-		return alias;
+		return artistAlias;
 	}
 
 	public String getCountry() {
-		return country;
+		return artistCountry;
 	}
 
 	public String getGender() {
-		return gender;
+		return artistGender;
 	}
 
-	public String getDisamiguation() {
-		return disamiguation;
+	public String getDisambiguation() {
+		return artistDisambiguation;
 	}
 
 	public boolean isDead() {
-		return isDead;
+		return artistIsDead;
 	}
 
 	public void setArtistId(int artistId) {
@@ -65,47 +75,61 @@ public class Artist {
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.artistFirstName = firstName;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.artistLastName = lastName;
 	}
 	
 	public void setName(String fName, String lName) {
-		firstName = fName;
-		lastName = lName;
+		artistFirstName = fName;
+		artistLastName = lName;
 	}
 
 	public void setAlias(String alias) {
-		this.alias = alias;
+		this.artistAlias = alias;
 	}
 
 	public void setCountry(String country) {
-		this.country = country;
+		this.artistCountry = country;
 	}
 
 	public void setGender(String gender) {
-		this.gender = gender;
+		this.artistGender = gender;
 	}
-
-	public void setDisamiguation(String disamiguation) {
-		this.disamiguation = disamiguation;
+	
+	public void setDisambiguation(String disambiguation) {
+		this.artistDisambiguation = disambiguation;
 	}
 
 	public void setDead(boolean isDead) {
-		this.isDead = isDead;
+		this.artistIsDead = isDead;
 	}
+    
+	public void setEvents(ArrayList<MusicEvent> alme) {
+		events = alme;
+	}
+	
+	public ArrayList<MusicEvent> getEvents(){
+		return events;
+	}
+	
 	
 	@Override
 	public String toString() {
-		String name = firstName + " " + lastName;
-		if(!alias.isEmpty()) name += " (AKA " + alias + ")";
-		if(!country.isEmpty()) name += ":\nBorn in: " + country;
-		if(!gender.isEmpty()) name += "\nGender: " + gender;
-		if(!disamiguation.isEmpty()) name += "\nDisambig: " + disamiguation;
-		name += "\nIs dead: " + isDead;
+		String name = artistFirstName + " " + artistLastName;
+		if(!artistAlias.isEmpty()) name += " (AKA " + artistAlias + ")";
+		if(!artistCountry.isEmpty()) name += ":\nBorn in: " + artistCountry;
+		if(!artistGender.isEmpty()) name += "\nGender: " + artistGender;
+		if(!artistDisambiguation.isEmpty()) name += "\nDisambig: " + artistDisambiguation;
+		name += "\nIs dead: " + artistIsDead;
 		return name;
+	}
+	
+	public String toStringWithEvents() {
+		String regularOutput = toString();
+		return regularOutput + "\nEvents saved: " + getEvents();
 	}
 	
 	@Override
@@ -124,7 +148,7 @@ public class Artist {
 		// isSame = isSame && ( comparing.isDead == this.isDead );
 		isSame = isSame && (comparing.getAlias().equals(this.getAlias()));
 		// isSame = isSame && ( comparing.getCountry().equals(this.getCountry()));
-		isSame = isSame && (comparing.getDisamiguation().equals(this.getDisamiguation()));
+		isSame = isSame && (comparing.getDisambiguation().equals(this.getDisambiguation()));
 		isSame = isSame && (comparing.getFirstName().equals(this.getFirstName()));
 		// isSame = isSame && ( comparing.getGender().equals(this.getGender()));
 		isSame = isSame && (comparing.getLastName().equals(this.getLastName()));

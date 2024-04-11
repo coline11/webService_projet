@@ -9,7 +9,7 @@ import com.newmusic.web.data.MusicEvent;
 import com.newmusic.web.resource.DistantWSAccess;
 
 /**
- * Music service that implements the different request methods
+ * Music service that implements the different request methods.
  * 
  * @author mattewyang1325@gmail.com
  *
@@ -72,7 +72,7 @@ public class MusicService {
 		
 		int id = getNewEventId(artist);
 		event.setEventId(id);
-
+		
 		upcomingEventsArtist.get(artist).add(event);
 		eventIdsByArtist.get(artist).add(event.getEventId());
 		eventByIdByArtistId.get(artist.getArtistsId()).put(id, event);
@@ -159,11 +159,32 @@ public class MusicService {
 		if(musicEvents == null) return null;
 		return musicEvents.get(eventId);
 	}
+	
+	/**
+	 * Get all of an artist's events.
+	 * @param artistId The id of the artist.
+	 * @return All of the artist's events.
+	 */
+	public Artist getArtistEvents(int artistId){
+		Artist a = artistById.get(artistId);
+		a.setEvents(new ArrayList<MusicEvent>(eventByIdByArtistId.get(artistId).values()));
+		return a;
+		
+	}
 
+	/**
+	 * Get all events across all artists
+	 * @return A {@link HashMap} associating an {@link Artist} to their {@link MusicEvent}s.
+	 */
 	public HashMap<Artist, ArrayList<MusicEvent>> getUpcomingEventsArtist() {
 		return upcomingEventsArtist;
 	}
 	
+	/**
+	 * Get a specific {@link Artist}
+	 * @param id The id of the {@link Artist}
+	 * @return The {@link Artist}, or null if it doesn't exist
+	 */
 	public Artist getArtist(int id) {
 		return artistById.get(id);
 	}

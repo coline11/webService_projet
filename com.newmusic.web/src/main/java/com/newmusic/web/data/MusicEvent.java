@@ -1,16 +1,18 @@
 package com.newmusic.web.data;
 
-import java.time.LocalDate;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Data class for to store information on an event
+ * @author Yang Mattew
+ *
+ */
 @XmlRootElement
 public class MusicEvent {
 	private int eventId;
 	private String type = "";
 	private String eventName = "";
 	private String disambiguation = "";
-	//private LocalDate startDate = Constants.NULL_DATE, endDate = Constants.NULL_DATE;
 	private Artist performer = null;
 	private String location = "";
 	private int score = 999;
@@ -51,14 +53,6 @@ public class MusicEvent {
 		return disambiguation;
 	}
 
-	/*public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	public LocalDate getEndDate() {
-		return endDate;
-	}*/
-
 	public Artist getPerformer() {
 		return performer;
 	}
@@ -88,14 +82,6 @@ public class MusicEvent {
 		this.disambiguation = disambiguation;
 	}
 
-	/*public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}*/
-
 	public void setPerformer(Artist performer) {
 		this.performer = performer;
 	}
@@ -114,7 +100,6 @@ public class MusicEvent {
 		if(!location.equals("")) event += ", at: " + location;
 		if(!type.equals("")) event += "\nType: " + type;
 		if(score != 999) event += "\nScore: " + score;
-		event += "\nArtist: " + performer;
 		return event;
 	}
 	
