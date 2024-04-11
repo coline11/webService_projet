@@ -22,14 +22,14 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
 
 #### Features
 
-- Utilisez la méthode `searchByArtist(artistInfo)` pour rechercher des événements musicaux liés à un artiste.
-- Utilisez la méthode `searchPlace(placeName)` pour rechercher des événements musicaux à une adresse spécifique.
-- Utilisez la méthode `searchEvent(eventName)` pour rechercher des événements musicaux avec un nom spécifique.
+- Utilisez la méthode `MusicEvent getEvent(Integer artistId, Integer eventId)` pour rechercher un événement musicaux lié à un artiste.
+- Utilisez la méthode `Artist getEvents(Integer artistId)` pour rechercher des événements musicaux liés à un artiste.
+- Utilisez la méthode `Artist getArtist(Integer id)` pour rechercher un artiste.
 ...
 
 #### Comment utiliser
 
-1. **Recherchez un événement musicaux lié à un artiste, par exemple "Paradise Tour: San Francisco"**
+1. **Ajouter et recherchez un événement musicaux lié à un artiste, par exemple "Paradise Tour: San Francisco"**
 
    ```java
 		Artist artist = new Artist("Ed", "Sheeran");
@@ -41,7 +41,7 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
 		MusicEvent me = getEvent(artistId, idEventMain);
 		System.out.println(me);
 
-2. **Rechercher des événements musicaux liés à un artiste, par exemple "Taylor Swift"**
+2. **Ajouter et rechercher des événements musicaux liés à un artiste, par exemple "Taylor Swift"**
 
    ```java
 		Artist artist = new Artist("Taylor", "Swift");
