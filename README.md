@@ -1,6 +1,6 @@
-# webService_projet
+# Projet de services web
 
-## membres
+## Membres
 
 - WU Jingyi (Email: wjycoline@gmail.com)
 - YANG Mattew (Email: emailecolematty@gmail.com)
