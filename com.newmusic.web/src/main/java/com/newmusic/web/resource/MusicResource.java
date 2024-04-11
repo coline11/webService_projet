@@ -1,9 +1,6 @@
 package com.newmusic.web.resource;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;

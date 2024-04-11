@@ -1,13 +1,12 @@
 package com.newmusic.web.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 
 import com.newmusic.web.data.Artist;
 import com.newmusic.web.data.MusicEvent;
+import com.newmusic.web.resource.DistantWSAccess;
 
 /**
  * Music service that implements the different request methods
@@ -37,7 +36,7 @@ public class MusicService {
 
 		// Since the event ids are stored in an arraylist, and this list is sorted
 		// smallest to biggest, we just need to know the last number added
-		if(eventIds.size() == 0) return 0;
+		if(eventIds.size() == 0) return 1;
 		int newId = eventIds.get(eventIds.size() - 1) + 1;
 		return newId;
 	}
@@ -87,6 +86,8 @@ public class MusicService {
 	 * @param artist The artist to add
 	 */
 	public Artist addArtist(Artist artist) {
+		artist = DistantWSAccess.getArtist(artist, !artist.getAlias().equals(""));
+		
 		if(artistById.containsValue(artist)) {
 			return null;
 		}
@@ -110,16 +111,10 @@ public class MusicService {
 	public boolean deleteArtist(int artistId) {
 		Artist artist = artistById.remove(artistId);
 		eventByIdByArtistId.remove(artistId);
+		eventIdsByArtist.remove(artist);
 		boolean wasRemoved = upcomingEventsArtist.remove(artist) != null;
 		return wasRemoved;
 	}
-	
-	/*
-	private static HashMap<Artist, ArrayList<MusicEvent>> upcomingEventsArtist = new HashMap<Artist, ArrayList<MusicEvent>>();
-
-	private static HashMap<Artist, ArrayList<Integer>> eventIdsByArtist = new HashMap<Artist, ArrayList<Integer>>();
-	private static HashMap<Integer, HashMap<Integer, MusicEvent>> eventByIdByArtistId = new HashMap<Integer, HashMap<Integer, MusicEvent>>();
-	 */
 	
 	/**
 	 * Deletes a specific event from an artist's upcoming event list

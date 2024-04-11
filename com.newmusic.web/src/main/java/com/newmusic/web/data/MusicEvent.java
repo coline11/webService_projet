@@ -9,6 +9,7 @@ public class MusicEvent {
 	private int eventId;
 	private String type = "";
 	private String eventName = "";
+	private String disambiguation = "";
 	//private LocalDate startDate = Constants.NULL_DATE, endDate = Constants.NULL_DATE;
 	private Artist performer = null;
 	private String location = "";
@@ -19,6 +20,11 @@ public class MusicEvent {
 	public MusicEvent(String name, Artist byWho) {
 		eventName = name;
 		performer = byWho;
+	}
+	
+	public MusicEvent(String name, String disambig, Artist byWho) {
+		this(name, byWho);
+		this.disambiguation = disambig;
 	}
 	
 	public MusicEvent(String name) {
@@ -39,6 +45,10 @@ public class MusicEvent {
 
 	public String getEventName() {
 		return eventName;
+	}
+
+	public String getDisambiguation() {
+		return disambiguation;
 	}
 
 	/*public LocalDate getStartDate() {
@@ -73,6 +83,10 @@ public class MusicEvent {
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
+	
+	public void setDisambiguation(String disambiguation) {
+		this.disambiguation = disambiguation;
+	}
 
 	/*public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
@@ -97,9 +111,9 @@ public class MusicEvent {
 	@Override
 	public String toString() {
 		String event = eventName;
-		event += ", at: " + location;
-		event += "\nType: " + type;
-		event += "\nScore: " + score;
+		if(!location.equals("")) event += ", at: " + location;
+		if(!type.equals("")) event += "\nType: " + type;
+		if(score != 999) event += "\nScore: " + score;
 		event += "\nArtist: " + performer;
 		return event;
 	}
