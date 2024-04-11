@@ -22,40 +22,40 @@ L'objectif de ce projet est de créer un système de gestion des événements mu
 
 #### Features
 
-- Utilize the `searchByArtist(artistInfo)` method to search for music events related to an artist.
-- Use the `searchPlace(placeName)` method to search for music events at a specific address.
-- Use the `searchEvent(eventName)` method to search for music events with a specific name.
+- Utilisez la méthode `searchByArtist(artistInfo)` pour rechercher des événements musicaux liés à un artiste.
+- Utilisez la méthode `searchPlace(placeName)` pour rechercher des événements musicaux à une adresse spécifique.
+- Utilisez la méthode `searchEvent(eventName)` pour rechercher des événements musicaux avec un nom spécifique.
 ...
 
 #### Comment utiliser
 
-1. **Search for Music Events Related to an Artist for example "Billie Eilish"**
+1. **Recherchez des événements musicaux liés à un artiste, par exemple "Billie Eilish"**
 
    ```java
    String artistInfo = "Billie Eilish";
    String s = searchByArtist(artistInfo);
    System.out.println(s);
 
-2. **Search for Music Events Related to a Place for example "Studio 104, Radio France"**
+2. **Rechercher des événements musicaux liés à un lieu, par exemple "Studio 104, Radio France"**
 
    ```java
    String s = DistantWSAccess.searchPlace("Studio 104, Radio France");
    System.out.println(s);
    
-3. **Search the Artists**
+3. **Rechercher les artistes**
 
    ```java
-     // Search for information about the artist
+     // Rechercher des informations sur l'artiste
       String artistInfo = "Billie Eilish";
       String s = searchByArtist(artistInfo);
 
-      // Create an Artist instance
+      // Créer une instance d'artiste
       Artist artist = new Artist();
 
-      // Use the setFromXML method to set the attributes of the Artist instance
+      // Utilisez la méthode setFromXML pour définir les attributs de l'instance Artist
       artist.setFromXML(s);
 
-      // Print the attributes of the Artist instance to verify correctness
+      // Imprimez les attributs de l'instance Artist pour vérifier l'exactitude
       System.out.println("First Name: " + artist.getFirstName());
       System.out.println("Last Name: " + artist.getLastName());
       System.out.println("Alias: " + artist.getAlias());
