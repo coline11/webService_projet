@@ -111,9 +111,9 @@ public class MusicEvent {
 	@Override
 	public String toString() {
 		String event = eventName;
-		event += ", at: " + location;
-		event += "\nType: " + type;
-		event += "\nScore: " + score;
+		if(!location.equals("")) event += ", at: " + location;
+		if(!type.equals("")) event += "\nType: " + type;
+		if(score != 999) event += "\nScore: " + score;
 		event += "\nArtist: " + performer;
 		return event;
 	}

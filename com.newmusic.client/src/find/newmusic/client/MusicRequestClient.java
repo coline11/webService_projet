@@ -15,8 +15,7 @@ public class MusicRequestClient {
 	//private static final Integer[] eventAmountByArtist = {4,3,2,3};
 
 	public static void main(String[] args) {
-		//testDeleting();
-
+		
 		boolean success = testAddingArtists();
 		if (!success) {
 			return;
@@ -126,7 +125,7 @@ public class MusicRequestClient {
 	 * Test the deletetion of all artists.
 	 */
 	public static void testDeleting() {
-		for (int i = 0; i < 4; i++) {
+		for (int i = 1; i <= 4; i++) {
 			deleteArtist(i);
 		}
 	}

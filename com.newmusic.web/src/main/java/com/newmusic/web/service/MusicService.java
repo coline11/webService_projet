@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.newmusic.web.data.Artist;
 import com.newmusic.web.data.MusicEvent;
+import com.newmusic.web.resource.DistantWSAccess;
 
 /**
  * Music service that implements the different request methods
@@ -85,6 +86,8 @@ public class MusicService {
 	 * @param artist The artist to add
 	 */
 	public Artist addArtist(Artist artist) {
+		artist = DistantWSAccess.getArtist(artist, !artist.getAlias().equals(""));
+		
 		if(artistById.containsValue(artist)) {
 			return null;
 		}
