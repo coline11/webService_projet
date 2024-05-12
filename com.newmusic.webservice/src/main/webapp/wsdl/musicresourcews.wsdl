@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MusicResourceWSService" targetNamespace="http://www.com.newmusic.webservice.resource" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.com.newmusic.webservice.resource" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://www.com.newmusic.webservice.resource" schemaLocation="musicresourcews_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="GetEvent">
+    <wsdl:part name="parameters" element="tns:GetEvent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteArtist">
+    <wsdl:part name="parameters" element="tns:DeleteArtist">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetEvents">
+    <wsdl:part name="parameters" element="tns:GetEvents">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteEventResponse">
+    <wsdl:part name="parameters" element="tns:DeleteEventResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetEventResponse">
+    <wsdl:part name="parameters" element="tns:GetEventResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteEvent">
+    <wsdl:part name="parameters" element="tns:DeleteEvent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetArtist">
+    <wsdl:part name="parameters" element="tns:GetArtist">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AddArtistResponse">
+    <wsdl:part name="parameters" element="tns:AddArtistResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AddUpcomingEvent">
+    <wsdl:part name="parameters" element="tns:AddUpcomingEvent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetEventsResponse">
+    <wsdl:part name="parameters" element="tns:GetEventsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetArtistResponse">
+    <wsdl:part name="parameters" element="tns:GetArtistResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AddUpcomingEventResponse">
+    <wsdl:part name="parameters" element="tns:AddUpcomingEventResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteArtistResponse">
+    <wsdl:part name="parameters" element="tns:DeleteArtistResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AddArtist">
+    <wsdl:part name="parameters" element="tns:AddArtist">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MusicResourceWS">
+    <wsdl:operation name="AddUpcomingEvent">
+      <wsdl:input name="AddUpcomingEvent" message="tns:AddUpcomingEvent">
+    </wsdl:input>
+      <wsdl:output name="AddUpcomingEventResponse" message="tns:AddUpcomingEventResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <wsdl:input name="GetEvent" message="tns:GetEvent">
+    </wsdl:input>
+      <wsdl:output name="GetEventResponse" message="tns:GetEventResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtist">
+      <wsdl:input name="DeleteArtist" message="tns:DeleteArtist">
+    </wsdl:input>
+      <wsdl:output name="DeleteArtistResponse" message="tns:DeleteArtistResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <wsdl:input name="GetEvents" message="tns:GetEvents">
+    </wsdl:input>
+      <wsdl:output name="GetEventsResponse" message="tns:GetEventsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <wsdl:input name="DeleteEvent" message="tns:DeleteEvent">
+    </wsdl:input>
+      <wsdl:output name="DeleteEventResponse" message="tns:DeleteEventResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArtist">
+      <wsdl:input name="GetArtist" message="tns:GetArtist">
+    </wsdl:input>
+      <wsdl:output name="GetArtistResponse" message="tns:GetArtistResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddArtist">
+      <wsdl:input name="AddArtist" message="tns:AddArtist">
+    </wsdl:input>
+      <wsdl:output name="AddArtistResponse" message="tns:AddArtistResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MusicResourceWSServiceSoapBinding" type="tns:MusicResourceWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="AddUpcomingEvent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="AddUpcomingEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="AddUpcomingEventResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetEventResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteArtist">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="DeleteArtist">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteArtistResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetEvents">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetEventsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="DeleteEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteEventResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArtist">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetArtist">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetArtistResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddArtist">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="AddArtist">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="AddArtistResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MusicResourceWSService">
+    <wsdl:port name="MusicResourceWSPort" binding="tns:MusicResourceWSServiceSoapBinding">
+      <soap:address location="http://localhost:8080/com.newmusic.webservice/services/MusicResourceWSPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

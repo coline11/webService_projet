@@ -1,0 +1,148 @@
+<xs:schema xmlns:tns="http://www.com.newmusic.webservice.resource" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.com.newmusic.webservice.resource" version="1.0">
+
+  <xs:element name="AddArtist" type="tns:AddArtist"/>
+
+  <xs:element name="AddArtistResponse" type="tns:AddArtistResponse"/>
+
+  <xs:element name="AddUpcomingEvent" type="tns:AddUpcomingEvent"/>
+
+  <xs:element name="AddUpcomingEventResponse" type="tns:AddUpcomingEventResponse"/>
+
+  <xs:element name="DeleteArtist" type="tns:DeleteArtist"/>
+
+  <xs:element name="DeleteArtistResponse" type="tns:DeleteArtistResponse"/>
+
+  <xs:element name="DeleteEvent" type="tns:DeleteEvent"/>
+
+  <xs:element name="DeleteEventResponse" type="tns:DeleteEventResponse"/>
+
+  <xs:element name="GetArtist" type="tns:GetArtist"/>
+
+  <xs:element name="GetArtistResponse" type="tns:GetArtistResponse"/>
+
+  <xs:element name="GetEvent" type="tns:GetEvent"/>
+
+  <xs:element name="GetEventResponse" type="tns:GetEventResponse"/>
+
+  <xs:element name="GetEvents" type="tns:GetEvents"/>
+
+  <xs:element name="GetEventsResponse" type="tns:GetEventsResponse"/>
+
+  <xs:element name="artist" type="tns:artist"/>
+
+  <xs:element name="musicEvent" type="tns:musicEvent"/>
+
+  <xs:complexType name="AddUpcomingEvent">
+    <xs:sequence>
+      <xs:element name="ArtistId" type="xs:int"/>
+      <xs:element minOccurs="0" name="Event" type="tns:musicEvent"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="musicEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="disambiguation" type="xs:string"/>
+      <xs:element name="eventId" type="xs:int"/>
+      <xs:element minOccurs="0" name="eventName" type="xs:string"/>
+      <xs:element minOccurs="0" name="location" type="xs:string"/>
+      <xs:element minOccurs="0" name="performer" type="tns:artist"/>
+      <xs:element name="score" type="xs:int"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="artist">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="alias" type="xs:string"/>
+      <xs:element name="artistId" type="xs:int"/>
+      <xs:element minOccurs="0" name="country" type="xs:string"/>
+      <xs:element name="dead" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="disambiguation" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="events" nillable="true" type="tns:musicEvent"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element minOccurs="0" name="gender" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddUpcomingEventResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Response" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetEvent">
+    <xs:sequence>
+      <xs:element name="ArtistId" type="xs:int"/>
+      <xs:element name="EventId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetEventResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Event" type="tns:musicEvent"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeleteArtist">
+    <xs:sequence>
+      <xs:element name="ArtistId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeleteArtistResponse">
+    <xs:sequence>
+      <xs:element name="Response" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetEvents">
+    <xs:sequence>
+      <xs:element name="ArtistId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetEventsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Events" type="tns:artist"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeleteEvent">
+    <xs:sequence>
+      <xs:element name="ArtistId" type="xs:int"/>
+      <xs:element name="EventId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeleteEventResponse">
+    <xs:sequence>
+      <xs:element name="Response" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetArtist">
+    <xs:sequence>
+      <xs:element name="ArtistId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetArtistResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Artist" type="tns:artist"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddArtist">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Artist" type="tns:artist"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AddArtistResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Response" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
