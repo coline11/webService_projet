@@ -224,7 +224,7 @@ public class Artist {
 	 * @return The toString, but with the saved events
 	 */
 	public String toStringWithEvents() {
-		String regularOutput = toString();
+		String regularOutput = artistFirstName + " " + artistLastName;;
 		return regularOutput + "\nEvents saved: " + getEvents();
 	}
 	

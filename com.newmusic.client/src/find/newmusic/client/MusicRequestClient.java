@@ -18,18 +18,34 @@ public class MusicRequestClient {
 		
 		boolean success = testAddingArtists();
 		if (!success) {
+			System.out.println("Artist failed");
+			testDeleting();
 			return;
 		}
 
 		success = testAddingEvents();
 		if (!success) {
+			System.out.println("Event failed");
 			testDeleting();
 			return;
 		}
-
-		Artist artistEvents = getEvents(1);
-		System.out.println(artistEvents.toStringWithEvents());
 		
+		int artistIdSearch = 1, eventIdSearch = 2;
+/*
+		Artist artist = getArtist(artistIdSearch);
+		System.out.println(artist);
+		
+		System.out.println("\n");
+		
+		Artist artistEvents = getEvents(artistIdSearch);
+		System.out.println(artistEvents.toStringWithEvents());
+		*/
+		
+		System.out.println("\n");
+		MusicEvent me = getEvent(artistIdSearch, eventIdSearch);
+		System.out.println("Event with eventId " + eventIdSearch + " from artistId " + artistIdSearch + " \n" + me);
+
+		System.out.println("\n");
 		testDeleting();
 	}
 
@@ -46,7 +62,7 @@ public class MusicRequestClient {
 		Artist artist = new Artist(fName, lName);
 		idArtistMain = addArtist(artist);
 		if (idArtistMain < 0) {
-			System.out.println("Artist " + fName + " already exists!");
+			System.out.println("Artist " + fName + " already exists !");
 			return false;
 		}
 		//System.out.println("Added artist at: " + idArtistMain);
@@ -128,8 +144,12 @@ public class MusicRequestClient {
 	 * Test the deletetion of all artists.
 	 */
 	public static void testDeleting() {
-		for (int i = 1; i <= 4; i++) {
-			deleteArtist(i);
+		for (int i = 0; i <= 4; i++) {
+			Artist a = getArtist(i);
+			if(a != null) {
+				//System.out.println("Artist " + a.getFirstName() + " " + a.getLastName() + " succesfully deleted.");
+				deleteArtist(i);
+			}
 		}
 	}
 
@@ -198,7 +218,7 @@ public class MusicRequestClient {
 		try {
 			s = c.get(Artist.class);
 		} catch (NotFoundException e) {
-			System.out.println("Oops! Artist not found.");
+			//System.out.println("Oops! Artist not found.");
 		}
 		c.close();
 		return s;
@@ -281,11 +301,10 @@ public class MusicRequestClient {
 	}
 
 	/**
-	 * Get an event, given its artist and event id.
+	 * Get an all events, given the artistId
 	 * 
 	 * @param artistId The artist's id
-	 * @param eventId  The event's id
-	 * @return The event, if it exists, null otherwise
+	 * @return The events headlined by a specific artist, if they exist, null otherwise
 	 */
 	private static Artist getEvents(Integer artistId) {
 		System.out.println("Getting events from artist number " + artistId + "... ");
